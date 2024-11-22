@@ -15,17 +15,6 @@ class ThriftAT017 < Formula
     end
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_ventura:  "ee3bde856db5cfd342c2383cb108c8b4d2cd93c82a99fc44d203c34fbad46804"
-    sha256 cellar: :any,                 arm64_monterey: "cab37541e49c9895b900cfbec2ef67fddf240699975bdaa2eea25e5110dc31e1"
-    sha256 cellar: :any,                 arm64_big_sur:  "bb496e6fe3cfdfafc3b2558af33c6008802f157efef43b12c801315c9cd4da45"
-    sha256 cellar: :any,                 ventura:        "cc594cd722d68c7d7bce933eb510cbe2b819e5e7a455ad5398caf00cc236a9ed"
-    sha256 cellar: :any,                 monterey:       "17406f83b600ee211014de055114ba8948ef7802dd3f0de80bb63ed0a33dfd10"
-    sha256 cellar: :any,                 big_sur:        "e446d029f2856a2f9afaccabec4c469abc60330df078e89c773f42e372f9b639"
-    sha256 cellar: :any,                 catalina:       "103df8d65c791c3d3430d8ccf2165e27c30dd9745164a163871333b191338c62"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "771930b8511e07801658fc5b94f374a758a135ae4da0f2ec2b61b990137b954a"
-  end
-
   head do
     url "https://github.com/apache/thrift.git", branch: "master"
 
@@ -37,7 +26,8 @@ class ThriftAT017 < Formula
 
   depends_on "bison" => :build
   depends_on "boost" => [:build, :test]
-  depends_on "openssl@1.1"
+  depends_on "libevent" => :build
+  depends_on "rhuffy/thrift/openssl@1.1"
   uses_from_macos "zlib"
 
   def install
@@ -48,7 +38,7 @@ class ThriftAT017 < Formula
       --disable-tests
       --prefix=#{prefix}
       --libdir=#{lib}
-      --with-openssl=#{Formula["openssl@1.1"].opt_prefix}
+      --with-openssl=#{Formula["rhuffy/thrift/openssl@1.1"].opt_prefix}
       --without-java
       --without-kotlin
       --without-python
