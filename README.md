@@ -1,10 +1,10 @@
-# Rhuffy Thrift
+# Thrift@0.17
 
 ## How do I install these formulae?
 
-`brew install rhuffy/thrift/<formula>`
+`brew install rhuffy/thrift/thrift@0.17`
 
-Or `brew tap rhuffy/thrift` and then `brew install <formula>`.
+Or `brew tap rhuffy/thrift` and then `brew install thrift@0.17`.
 
 Or, in a [`brew bundle`](https://github.com/Homebrew/homebrew-bundle) `Brewfile`:
 
